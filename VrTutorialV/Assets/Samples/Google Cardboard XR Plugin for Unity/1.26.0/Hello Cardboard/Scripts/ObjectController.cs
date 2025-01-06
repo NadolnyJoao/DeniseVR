@@ -52,6 +52,7 @@ public float amplitude = 0.5f;
 public float frequency = 1f;
 public bool podeFlutuar;
 public GameObject BoraBill;
+ public GameObject rotater;
 
     /// <summary>
     /// Start is called before the first frame update.
@@ -65,15 +66,21 @@ public GameObject BoraBill;
 
     public void Update(){
       
-        if (podeFlutuar == true){
-             tempPos = posOffset;
-        tempPos.y += Mathf.Sin(Time.fixedTime * Mathf.PI * frequency) * amplitude;
-
-        transform.position = tempPos;
+        //if (podeFlutuar == true){
+        // tempPos = posOffset;
+        //tempPos.y += Mathf.Sin(Time.fixedTime * Mathf.PI * frequency) * amplitude;
+        if (poderodar == true){
+             rotater.gameObject.transform.localScale += new Vector3(1,1,0);
+            //transform.Rotate(100 * Time.deltaTime, 0 , 0 );
         }
         else {
-           // transform.position = _startingPosition;
+            rotater.gameObject.transform.localScale += new Vector3(0,0,0);
         }
+       //transform.position = tempPos;
+        
+       // else {
+           // transform.position = _startingPosition;
+        //}
 
     }
     /// <summary>
