@@ -70,11 +70,11 @@ public GameObject BoraBill;
         // tempPos = posOffset;
         //tempPos.y += Mathf.Sin(Time.fixedTime * Mathf.PI * frequency) * amplitude;
         if (poderodar == true){
-             rotater.gameObject.transform.localScale += new Vector3(1,1,0);
+             rotater.gameObject.transform.localScale = new Vector3(0.4f,0.6f,0.05f);
             //transform.Rotate(100 * Time.deltaTime, 0 , 0 );
         }
         else {
-            rotater.gameObject.transform.localScale += new Vector3(0,0,0);
+            rotater.gameObject.transform.localScale = new Vector3(0.2f,0.3f,0.05f);
         }
        //transform.position = tempPos;
         
