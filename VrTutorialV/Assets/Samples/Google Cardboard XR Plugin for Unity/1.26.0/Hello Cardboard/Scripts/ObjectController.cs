@@ -38,14 +38,20 @@ public class ObjectController : MonoBehaviour
     // The objects are about 1 meter in radius, so the min/max target distance are
     // set so that the objects are always within the room (which is about 5 meters
     // across).
-    private const float _minObjectDistance = 2.5f;
+   /* private const float _minObjectDistance = 2.5f;
     private const float _maxObjectDistance = 3.5f;
     private const float _minObjectHeight = 0.5f;
-    private const float _maxObjectHeight = 3.5f;
+    private const float _maxObjectHeight = 3.5f;*/
     private bool poderodar = false;
 
     private Renderer _myRenderer;
     private Vector3 _startingPosition;
+    Vector3 posOffset = new Vector3();
+Vector3 tempPos = new Vector3();
+public float amplitude = 0.5f;
+public float frequency = 1f;
+public bool podeFlutuar;
+public GameObject BoraBill;
 
     /// <summary>
     /// Start is called before the first frame update.
@@ -58,18 +64,22 @@ public class ObjectController : MonoBehaviour
     }
 
     public void Update(){
-        if(poderodar == true){
-             transform.Rotate(0,20*Time.deltaTime,0);
+      
+        if (podeFlutuar == true){
+             tempPos = posOffset;
+        tempPos.y += Mathf.Sin(Time.fixedTime * Mathf.PI * frequency) * amplitude;
+
+        transform.position = tempPos;
         }
         else {
-             transform.Rotate(0, 0 ,0);
+           // transform.position = _startingPosition;
         }
 
     }
     /// <summary>
     /// Teleports this instance randomly when triggered by a pointer click.
     /// </summary>
-    public void TeleportRandomly()
+    /*public void TeleportRandomly()
     {
         // Picks a random sibling, activates it and deactivates itself.
         int sibIdx = transform.GetSiblingIndex();
@@ -91,7 +101,7 @@ public class ObjectController : MonoBehaviour
         gameObject.SetActive(false);
         SetMaterial(false);
     }
-
+*/
     /// <summary>
     /// This method is called by the Main Camera when it starts gazing at this GameObject.
     /// </summary>
@@ -99,6 +109,7 @@ public class ObjectController : MonoBehaviour
     {
         //SetMaterial(true);
         poderodar = true;
+        podeFlutuar = true;
        
     }
 
@@ -109,6 +120,7 @@ public class ObjectController : MonoBehaviour
     {
         //SetMaterial(false);
         poderodar = false;
+         podeFlutuar = false;
     }
 
     /// <summary>
@@ -117,7 +129,8 @@ public class ObjectController : MonoBehaviour
     /// </summary>
     public void OnPointerClick()
     {
-        TeleportRandomly();
+       // TeleportRandomly();
+       BoraBill.SetActive(true);
     }
 
     /// <summary>
